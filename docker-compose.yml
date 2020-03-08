@@ -1,0 +1,14 @@
+version: "3.7"
+services:
+
+  demo:
+    container_name: demo
+    image: rubyon.co.kr:5555/demo:latest
+    restart: unless-stopped
+    networks:
+      - frontend
+    labels:
+      - traefik.http.routers.demo.rule=Host(`demo.rubyon.co.kr`)
+
+networks:
+  frontend:
