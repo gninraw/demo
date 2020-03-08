@@ -36,6 +36,8 @@ pipeline {
                         sh 'sed -i "s#-dev:latest#:dev#g" ./docker-compose.yml'
                         sh 'sed    "s#demo-dev.rubyon.co.kr#demo-test.rubyon.co.kr#g" ./docker-compose.yml'
                         sh 'sed -i "s#demo-dev.rubyon.co.kr#demo-test.rubyon.co.kr#g" ./docker-compose.yml'
+                        sh 'sed    "s#demo-db#demo-dev-db#g" ./src/main/resources/application.properties'
+                        sh 'sed -i "s#demo-db#demo-dev-db#g" ./src/main/resources/application.properties'                        
                         sh 'sed    "s#</imageName#:dev</imageName#g" ./pom.xml'
                         sh 'sed -i "s#</imageName#:dev</imageName#g" ./pom.xml'
                         sh 'mvn clean package docker:build'
