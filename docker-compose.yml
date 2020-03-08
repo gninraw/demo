@@ -7,8 +7,28 @@ services:
     restart: unless-stopped
     networks:
       - frontend
+      - backend
+    links:
+      - demo-db:mysql
+    depends_on:
+      - demo-db
     labels:
       - traefik.http.routers.demo.rule=Host(`demo.rubyon.co.kr`)
-
+  demo-db:
+    container_name: demo-db
+    image: mysql:latest
+    restart: unless-stopped
+    networks:
+      - backend
+    environment:
+      MYSQL_ROOT_PASSWORD: "a113n"
+      MYSQL_USER: "alien"
+      MYSQL_PASSWORD: "a113n"
+      MYSQL_DATABASE: test_table
+    volumes:
+      - /home/docker/demo/data:/var/lib/mysql
+      
 networks:
   frontend:
+  backend:
+  
