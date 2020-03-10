@@ -61,7 +61,7 @@
 				<artifactId>docker-maven-plugin</artifactId>
 				<version>1.2.2</version>
 				<configuration>
-					<imageName>rubyon.co.kr:5555/${project.artifactId}</imageName>
+					<imageName>hub.rubyon.co.kr/${project.artifactId}</imageName>
 					<dockerDirectory>src/main/docker</dockerDirectory>
 					<resources>
 						<resource>
