@@ -3,7 +3,7 @@ services:
 
   demo:
     container_name: demo
-    image: rubyon.co.kr:5555/demo:latest
+    image: hub.rubyon.co.kr/demo:latest
     restart: unless-stopped
     networks:
       - frontend

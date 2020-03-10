@@ -89,7 +89,7 @@ pipeline {
     }
 
     environment {
-        IMAGE_NAME = 'rubyon.co.kr:5555/demo'
+        IMAGE_NAME = 'hub.rubyon.co.kr/demo'
     }
 
 }
