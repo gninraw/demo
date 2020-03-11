@@ -38,6 +38,8 @@ pipeline {
                         sh 'sed -i "s#demo-dev.rubyon.co.kr#demo-test.rubyon.co.kr#g" ./docker-compose.yml'
                         sh 'sed    "s#demo-db#demo-dev-db#g" ./src/main/resources/application.properties'
                         sh 'sed -i "s#demo-db#demo-dev-db#g" ./src/main/resources/application.properties'                        
+                        sh 'sed    "s#SNAPSHOT#dev</tag#g" ./pom.xml'
+                        sh 'sed -i "s#SNAPSHOT#dev</tag#g" ./pom.xml'
                         sh 'sed    "s#latest</tag#dev</tag#g" ./pom.xml'
                         sh 'sed -i "s#latest</tag#dev</tag#g" ./pom.xml'
                         sh 'mvn clean package jib:build'
