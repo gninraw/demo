@@ -22,7 +22,7 @@ pipeline {
                         branch 'master'
                     }
                     steps {
-                        sh 'mvn clean package jis:build'
+                        sh 'mvn clean package jib:build'
                     }
                 }
                 stage('dev') {
@@ -40,7 +40,7 @@ pipeline {
                         sh 'sed -i "s#demo-db#demo-dev-db#g" ./src/main/resources/application.properties'                        
                         sh 'sed    "s#latest</image#dev</image#g" ./pom.xml'
                         sh 'sed -i "s#latest</image#dev</image#g" ./pom.xml'
-                        sh 'mvn clean package jis:build'
+                        sh 'mvn clean package jib:build'
                     }
                 }
             }
