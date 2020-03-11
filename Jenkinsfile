@@ -22,7 +22,7 @@ pipeline {
                         branch 'master'
                     }
                     steps {
-                        sh 'mvn clean package docker:build'
+                        sh 'mvn clean package jis:build'
                     }
                 }
                 stage('dev') {
@@ -40,7 +40,7 @@ pipeline {
                         sh 'sed -i "s#demo-db#demo-dev-db#g" ./src/main/resources/application.properties'                        
                         sh 'sed    "s#latest</image#dev</image#g" ./pom.xml'
                         sh 'sed -i "s#latest</image#dev</image#g" ./pom.xml'
-                        sh 'mvn clean package docker:build'
+                        sh 'mvn clean package jis:build'
                     }
                 }
             }
@@ -72,10 +72,6 @@ pipeline {
         failure {
             slackSend(color: '#FF0000', message: "Build Failed - '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
         }
-    }
-
-    environment {
-        IMAGE_NAME = 'hub.rubyon.co.kr/demo'
     }
 
 }
