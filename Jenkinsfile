@@ -15,7 +15,7 @@ pipeline {
             }
         }
 
-        stage('Build image') {
+        stage('Build & Push image') {
             parallel {
                 stage('master') {
                     when {
@@ -38,27 +38,13 @@ pipeline {
                         sh 'sed -i "s#demo-dev.rubyon.co.kr#demo-test.rubyon.co.kr#g" ./docker-compose.yml'
                         sh 'sed    "s#demo-db#demo-dev-db#g" ./src/main/resources/application.properties'
                         sh 'sed -i "s#demo-db#demo-dev-db#g" ./src/main/resources/application.properties'                        
-                        sh 'sed    "s#</imageName#:dev</imageName#g" ./pom.xml'
-                        sh 'sed -i "s#</imageName#:dev</imageName#g" ./pom.xml'
+                        sh 'sed    "s#latest</image#:dev</image#g" ./pom.xml'
+                        sh 'sed -i "s#latest</image#:dev</image#g" ./pom.xml'
                         sh 'mvn clean package docker:build'
                     }
                 }
             }
         }
-
-        stage('Push image') {
-            steps {
-                script {
-                    try {
-                        sh 'docker push ${IMAGE_NAME}:latest'
-                    } catch (e) {}
-                    try {
-                        sh 'docker push ${IMAGE_NAME}:dev'
-                    } catch (e) {}
-                }
-            }
-        }
-
         stage('Run') {
             steps {
                 sh 'docker-compose down'
