@@ -8,8 +8,6 @@ services:
     networks:
       - frontend
       - backend
-    ports:
-      8811:8080
     links:
       - demo-db:mysql
     depends_on:
