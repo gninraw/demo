@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Clone repository') {
             steps {
-                slackSend(color: '#00b159', message: "Build Started - '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+                #slackSend(color: '#00b159', message: "Build Started - '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
                 git(credentialsId: 'github-ssh', url: 'git@github.com:rubyon/demo.git', branch: "${env.BRANCH_NAME}", changelog: true, poll: true)
             }
         }
@@ -69,10 +69,10 @@ pipeline {
 
     post {
         success {
-            slackSend(color: '#439FE0', message: "Build Completed - '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+            #slackSend(color: '#439FE0', message: "Build Completed - '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
         }
         failure {
-            slackSend(color: '#FF0000', message: "Build Failed - '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+            #slackSend(color: '#FF0000', message: "Build Failed - '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
         }
     }
 
