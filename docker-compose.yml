@@ -13,7 +13,7 @@ services:
     depends_on:
       - demo-db
     labels:
-      - traefik.http.routers.demo.rule=Host(`demo.rubyon.co.kr`)
+      - traefik.http.routers.demo.rule=Host(`demo.dalsoft.net`)
   demo-db:
     container_name: demo-db
     image: mysql:latest
