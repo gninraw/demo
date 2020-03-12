@@ -11,7 +11,7 @@ pipeline {
         stage('Clone repository') {
             steps {
                 // slackSend(color: '#00b159', message: "Build Started - '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
-                git(credentialsId: 'github-ssh', url: 'git@github.com:rubyon/demo.git', branch: "${env.BRANCH_NAME}", changelog: true, poll: true)
+                git(credentialsId: 'github-ssh', url: 'git@github.com:gninraw/demo.git', branch: "${env.BRANCH_NAME}", changelog: true, poll: true)
             }
         }
 
@@ -34,8 +34,8 @@ pipeline {
                         sh 'sed -i "s#demo#demo-dev#g" ./docker-compose.yml'
                         sh 'sed    "s#-dev:latest#:dev#g" ./docker-compose.yml'
                         sh 'sed -i "s#-dev:latest#:dev#g" ./docker-compose.yml'
-                        sh 'sed    "s#demo-dev.rubyon.co.kr#demo-test.rubyon.co.kr#g" ./docker-compose.yml'
-                        sh 'sed -i "s#demo-dev.rubyon.co.kr#demo-test.rubyon.co.kr#g" ./docker-compose.yml'
+                        sh 'sed    "s#demo-dev.dalsoft.net#demo-test.dalsoft.net#g" ./docker-compose.yml'
+                        sh 'sed -i "s#demo-dev.dalsoft.net#demo-test.dalsoft.net#g" ./docker-compose.yml'
                         sh 'sed    "s#demo-db#demo-dev-db#g" ./src/main/resources/application.properties'
                         sh 'sed -i "s#demo-db#demo-dev-db#g" ./src/main/resources/application.properties'                        
                         sh 'sed    "s#SNAPSHOT#DEV#g" ./pom.xml'
